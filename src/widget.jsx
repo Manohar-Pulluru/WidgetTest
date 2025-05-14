@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import './widget.css' // Import CSS
 
 window.MyWidget = {
   mount: (props = {}, containerId = 'my-widget') => {
@@ -11,6 +12,10 @@ window.MyWidget = {
     }
     const shadow = container.attachShadow({ mode: 'open' })
     const shadowRoot = document.createElement('div')
+    // Inject CSS into Shadow DOM
+    const style = document.createElement('style')
+    style.textContent = `@import url('./widget.css');`
+    shadow.appendChild(style)
     shadow.appendChild(shadowRoot)
     const root = ReactDOM.createRoot(shadowRoot)
     root.render(<App {...props} />)
@@ -18,7 +23,7 @@ window.MyWidget = {
   unmount: (containerId = 'my-widget') => {
     const container = document.getElementById(containerId)
     if (container && container.shadowRoot) {
-      ReactDOM.createRoot(container.shadowRoot).unmount()
+      container.shadowRoot.innerHTML = ''; // Clear Shadow DOM
     }
   }
 }

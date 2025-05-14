@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/widget.jsx'), // Updated to widget.jsx
+      entry: path.resolve(__dirname, 'src/widget.jsx'),
       name: 'MyWidget',
       fileName: (format) => `my-widget.${format}.js`,
       formats: ['umd'],
@@ -20,5 +20,6 @@ export default defineConfig({
         },
       },
     },
+    cssCodeSplit: false, // Ensure CSS is bundled into the UMD file
   },
 })
