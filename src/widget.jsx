@@ -9,7 +9,6 @@ window.MyWidget = {
       console.error(`No element found with id "${containerId}"`)
       return
     }
-    // Create a Shadow DOM
     const shadow = container.attachShadow({ mode: 'open' })
     const shadowRoot = document.createElement('div')
     shadow.appendChild(shadowRoot)

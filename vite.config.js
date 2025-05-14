@@ -6,13 +6,13 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/widget.js'), // Entry point for the widget
-      name: 'MyWidget', // Global variable name for UMD bundle
-      fileName: (format) => `my-widget.${format}.js`, // Output file name
-      formats: ['umd'], // UMD for broad compatibility
+      entry: path.resolve(__dirname, 'src/widget.jsx'), // Updated to widget.jsx
+      name: 'MyWidget',
+      fileName: (format) => `my-widget.${format}.js`,
+      formats: ['umd'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom'], // Externalize React to reduce bundle size
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
@@ -20,6 +20,5 @@ export default defineConfig({
         },
       },
     },
-    sourcemap: true, // Optional: for debugging
   },
 })
